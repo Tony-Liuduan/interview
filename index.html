@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interview list</title>
+    <style>
+        html {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: rgb(243, 243, 243);
+
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+            padding-left: 12px;
+            margin: 5px 0;
+        }
+
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .ui-background {
+            background-color: #fff;
+            padding: 0 12px;
+        }
+
+        li {
+            position: relative;
+            
+        }
+
+        li::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background-color: #e5e5e5;
+            left: 14px;
+            right: 0;
+            bottom: 0;
+            transform-origin: 0 0;
+            transform: scaleY(.5);
+        }
+
+        li:last-child::after {
+            height: 0;
+        }
+
+        a.link {
+            color: rgb(5, 105, 105);
+            text-decoration: none;
+            width: 100%;
+            display: block;
+            text-align: right;
+            line-height: 16px;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>JS</h3>
+    <ul class="ui-background">
+        <li><a class="link" href="/js/ajax.html">Ajax</a></li>
+    </ul>
+    <h3>CSS</h3>
+    <ul class="ui-background">
+        <li><a class="link" href="/css/triangle.html">三角形</a></li>
+    </ul>
+</body>
+
+</html>
