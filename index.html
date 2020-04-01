@@ -17,7 +17,7 @@
             margin: 0 auto;
             padding: 0;
             background-color: rgb(243, 243, 243);
-
+            overflow-y: auto;
         }
 
         h3 {
@@ -37,24 +37,22 @@
 
         .ui-background {
             background-color: #fff;
-            padding: 0 12px;
         }
 
         li {
             position: relative;
-            
         }
 
         li::after {
             content: "";
             position: absolute;
             height: 1px;
-            background-color: #e5e5e5;
             left: 14px;
             right: 0;
             bottom: 0;
             transform-origin: 0 0;
             transform: scaleY(.5);
+            background-color: #ddd;
         }
 
         li:last-child::after {
@@ -62,13 +60,42 @@
         }
 
         a.link {
-            color: rgb(5, 105, 105);
+            box-sizing: border-box;
             text-decoration: none;
             width: 100%;
             display: block;
             text-align: right;
             line-height: 16px;
-            padding: 15px 0;
+            padding: 15px;
+            transition: all .3s ease;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        /* 伪类的顺序应为link--visited--hover--focus--active */
+        a:link {
+            background-color: #fff;
+            color: rgb(5, 105, 105);
+        }
+
+        a:visited {
+            color: rgba(245, 78, 78, 0.918);
+        }
+
+        /* a:hover {
+            background-color: rgb(7, 6, 6);
+            color: #fff;
+        } */
+
+        /* 鼠标在元素上按下松开后显示颜色 */
+        a:focus {
+            background-color: rgba(245, 78, 78, 0.918);
+            color: #fff;
+        }
+
+        /* 必须在最后，鼠标在元素上按下还没有松开 */
+        a:active {
+            background-color: yellowgreen;
+            color: #fff;
         }
     </style>
 </head>
@@ -76,11 +103,12 @@
 <body>
     <h3>JS</h3>
     <ul class="ui-background">
-        <li><a class="link" href="/js/ajax.html">Ajax</a></li>
+        <li><a class="link" href="/js/ajax/ajax.html">Ajax</a></li>
+        <li><a class="link" href="/js/toPrimitive/preview/toPrimitive.html">隐式转换</a></li>
     </ul>
     <h3>CSS</h3>
     <ul class="ui-background">
-        <li><a class="link" href="/css/triangle.html">三角形</a></li>
+        <li><a class="link" href="/css/triangle/triangle.html">三角形</a></li>
     </ul>
 </body>
 
