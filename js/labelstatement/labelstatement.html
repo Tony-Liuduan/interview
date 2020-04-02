@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labelstatement</title>
+</head>
+
+<body>
+    <h3>Label Statement，它就是 JS 中的 goto 语句</h3>
+    <a href="https://segmentfault.com/a/1190000014127816">转载文章</a>
+    <article>
+        <p>如果一段代码既能够以语句的方式解析，也能用语法的方式解析，在JS中，会优先按语句来解析</p>
+        <i>JS是语句优先的，当一段代码既可以按照语句解析，又可以按照语法解析的时候，会优先按语句解析</i>
+        <br>
+        <br>
+        <pre>在浏览器控制台source-watch 中add `{ a: 1 }` 语句，会输出1</pre>
+        <i>千万不要在浏览器的控制台中去写上面这段代码，虽然结果和你开始想的结果一样，
+        但是，它是错误的</i>
+        <br>
+        <br>
+        <b>console是经过处理的这里不能相信，watch是直接JS的运行环境执行后的结果，是正确的</b>
+    </article>
+    <script src="./labelstatement.js"></script>
+</body>
+
+</html>
