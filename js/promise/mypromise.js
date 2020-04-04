@@ -206,66 +206,117 @@ MyPromise.all = function (list) {
 
 
 
-const pp = new MyPromise((res, rej) => {
-    setTimeout(() => {
-        res(new MyPromise(re => {
-            re(1000);
-        }));
-        // res({
-        //     then(r2) {
-        //         r2(new MyPromise(res => res(11111)))
-        //     }
-        // })
-        // res({
-        //     a: 1
-        // });
-        // rej("error")
-    }, 200);
-})
-    .then(res => {
-        console.log(res);
-        return {
-            then(r1) {
-                r1({
-                    then(r2) {
-                        r2(new MyPromise(res => res(999)))
-                    }
-                })
-            }
-        }
-    }, (e) => {
-        console.log(e);
-        return "cuowu";
-    })
-    .then(res => {
-        console.log(res);
-        // return pp;
+// const pp = new MyPromise((res, rej) => {
+//     setTimeout(() => {
+//         res(new MyPromise(re => {
+//             re(1000);
+//         }));
+//         // res({
+//         //     then(r2) {
+//         //         r2(new MyPromise(res => res(11111)))
+//         //     }
+//         // })
+//         // res({
+//         //     a: 1
+//         // });
+//         // rej("error")
+//     }, 200);
+// })
+//     .then(res => {
+//         console.log(res);
+//         return {
+//             then(r1) {
+//                 r1({
+//                     then(r2) {
+//                         r2(new MyPromise(res => res(999)))
+//                     }
+//                 })
+//             }
+//         }
+//     }, (e) => {
+//         console.log(e);
+//         return "cuowu";
+//     })
+//     .then(res => {
+//         console.log(res);
+//         // return pp;
 
-    })
+//     })
 
 
 
-MyPromise.all([
-    new MyPromise(res => res(1)),
-    new MyPromise(res => res(2)),
-])
-    .then(res => {
-        console.log(res)
-    })
+// MyPromise.all([
+//     new MyPromise(res => res(1)),
+//     new MyPromise(res => res(2)),
+// ])
+//     .then(res => {
+//         console.log(res)
+//     })
 
 
 
 // 测试：resolve处于resolve状态的then方法执行情况
-const po = new MyPromise((resolve, reject) => {
-    resolve("test async resolve");
+// const po = new MyPromise((resolve, reject) => {
+//     resolve("test async resolve");
+// });
+
+// setTimeout(() => {
+//     po.then(res => {
+//         console.log(res);
+//     })
+
+//     po.then(res => {
+//         console.log(res);
+//     })
+// }, 0);
+
+
+/**
+ *  promise 终极变态题
+ *  chrome 和 node 执行结果不一样哦
+ */
+function async1() {
+    console.log("async1 start");
+    new Promise(resolve => {
+        // async2().then(resolve);
+        resolve(async2());
+        // resolve处理thenable对象时，会多包裹一层new Promise 
+        // resolve(async2()) 等同于下面的代码
+        // async2()
+        //     .then((data) => {
+        //         new Promise(res => {
+        //             res()
+        //         })
+        //         .then(resolve)
+        //     })
+    })
+        .then((res) => {
+            console.log("++++++++++++++");
+            console.log(res);
+            console.log("async1 end");
+            console.log("++++++++++++++");
+        })
+}
+function async2() {
+    return new Promise(resolve => {
+        console.log('async2');
+        resolve(1);
+    })
+    // return {
+    //     then(resolve) {
+    //         console.log('async2');
+    //         resolve(1);
+    //     }
+    // }
+}
+async1()
+new Promise(function (resolve) {
+    console.log("promise1");
+    resolve();
+}).then(function () {
+    console.log("promise2");
+}).then(function () {
+    console.log("promise3");
+}).then(function () {
+    console.log("promise4");
 });
-
-setTimeout(() => {
-    po.then(res => {
-        console.log(res);
-    })
-
-    po.then(res => {
-        console.log(res);
-    })
-}, 0);
