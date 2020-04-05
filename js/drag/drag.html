@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag</title>
+    <style>
+        #box {
+            height: 200px;
+            width: 200px;
+            background-color: tomato;
+            position: absolute;
+            z-index: 1;
+            left: 300px;
+            top: 200px;
+        }
+
+        .droptarget {
+            float: left;
+            width: 100px;
+            height: 35px;
+            margin: 15px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script src="./drag.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        drag by mousemove
+    </div>
+
+
+    <p>在两个矩形框中来回拖动 p 元素:</p>
+    <div class="droptarget">
+        <p draggable="true" id="dragtarget">拖动我!</p>
+    </div>
+    <div class="droptarget"></div>
+</body>
+
+</html>
