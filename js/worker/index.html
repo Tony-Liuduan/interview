@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script src="./main.js"></script>
+
+    <iframe src="./iframe.html" frameborder="0" id="iframe"></iframe>
+
+    <script>
+        const iframe = document.getElementById("iframe")
+        iframe.onload = function () {
+            iframe.contentWindow.postMessage("hello iframe")
+            window.onmessage = function (e) {
+                console.log("main get message:", e.data);
+            };
+        };
+    </script>
+</body>
+
+</html>
