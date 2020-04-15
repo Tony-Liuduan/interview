@@ -12,5 +12,5 @@ function test(){
 test()();
 ```
 
-> 答案：不会
+> 答案：不会, window.eval() 会收回
 > 原因：balaba
