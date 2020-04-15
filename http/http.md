@@ -136,9 +136,8 @@ Content-Type: text/plain
 * session存在服务器，通过唯一sessionID来区分用户
     - 将session存入redis中
     - ctx.sessionId就是redis的key，也是写入cookie的value值
-    - app端：使用sessionId通过token携带认证，token存储在app本地存储SQLite中，app端使用token是安全的，在非越狱情况下app之间数据是不能共享的，其他app是无法获取到互相的token，在操作系统层面就进行了拦截
-    - 浏览器端：
-
+    - app端：使用sessionId通过token传递认证，token存储在app本地存储SQLite中，app端使用token是安全的，在非越狱情况下app之间数据是不能共享的，其他app是无法获取到互相的token，在操作系统层面就进行了拦截
+    - 浏览器端：通过cookie传递
 
 ## http 进化
 > http/0.9(1991) -> http/1.0(1996) -> http/1.1(1999) -> http/2(2015) -> http/3(waiting)
