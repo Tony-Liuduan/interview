@@ -7,6 +7,11 @@
 ## http缓存
 > http缓存都是第二次请求时开始的
 
+
+### 不能缓存的地方
+1. post请求
+
+
 ### 强缓存
 * Expires
 * Cache-Control
@@ -20,8 +25,10 @@
 
 
 ### 协商缓存
+> etag 优先级比 Last-Modified 高
 * Last-Modified / If-Modified-Since
 * Etag / If-None-Match
+
 
 #### Last-Modified / If-Modified-Since
 > Last-Modified是服务器告诉浏览器该资源的最后修改时间，
@@ -41,6 +48,13 @@
 > Etag是由服务端特定算法生成的该文件的唯一标识
 > 而请求头把返回的Etag值通过If-None-Match再带给服务端
 > 服务端通过比对从而决定是否响应新内容。这也是304缓存。
+
+
+### F5刷新 vs 前进后退 vs 硬性刷新
+1. F5：强缓存不生效，协商缓存生效
+2. 前进后退：优先强缓存，然后协商缓存
+3. 硬性刷新：强缓存协商缓存都不生效
+
 
 
 
