@@ -39,32 +39,36 @@
 4. client向server发送请求，建立TLS连接
 
 5. clinet发送，第一次信息（明文发送）
-hello server，给你一个随机数r1，我支持xx算法
+    - hello server
+    - 给你一个随机数r1
+    - 我支持xx算法
 
 6. server收到信息，回复（明文发送）
-hello client，我收到你的消息了，我也给你一个随机数r2，你藏好了，我们约定使用xx算法
+    - hello client，我收到你的消息了
+    - 我也给你一个随机数r2，你藏好了
+    - 我们约定使用xx算法
 
-7. server捎带脚的又发送了一个
-数字证书给client，核验下身份吧
+7. server捎带脚的又发送了一个数字证书给client
+    - 核验下身份吧
 
 8. client收到数字证书拿给ca去验证证书
-ca 使用公钥解密证书签名
-hash1 = RSA(证书签名，CA公钥)
-hash2 = SHA256(tbsCertificate)
-if (hash1 === hash2) 这个证书是真的
+    - ca 使用公钥解密证书签名
+    - hash1 = RSA(证书签名，CA公钥)
+    - hash2 = SHA256(tbsCertificate)
+    - if (hash1 === hash2) 这个证书是真的
 
 9. 身份验证通过，client发送第二条消息给server（<font color="red">非对称加密发送</font>）
-发送内容包括一个随机数r3
-并且使用数字证书提供的公钥进行加密
+    - 发送内容包括一个随机数r3
+    - 并且使用数字证书提供的公钥进行加密
 
 
 10. server收到消息，通过私钥解密，生成**对称加密秘钥**
-拿到随机数r3
-对称加密秘钥key=AES(r1, r2, r3);
+    - 拿到随机数r3
+    - 对称加密秘钥key=AES(r1, r2, r3);
 
 
 11. clinet手上也有这三个随机数，也生成**对称加密秘钥**
-对称加密秘钥key=AES(r1, r2, r3);
+    - 对称加密秘钥key=AES(r1, r2, r3);
 
 12. 之后clinet和server通过<font color="red">对称加密秘钥</font>通信
 
