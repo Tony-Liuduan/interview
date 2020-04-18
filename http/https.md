@@ -1,5 +1,13 @@
 # https
 
+## OSI模型（443端口）
+1. http(内嵌TLS/SSL模块)
+2. tcp：tcp握手的还是http层，ssl仅仅是http的一个模块
+3. ip
+4. 数据链路层
+5. 物理层
+
+
 #### md5
 1. etag一般通过md5生成
 2. md5不是加密算法，也不是压缩算法

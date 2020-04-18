@@ -62,3 +62,22 @@ if (!Array.prototype.reduce) {
         }
     });
 }
+
+
+
+// // 同步写法
+// [1, 3, 4].reduce(async (_, doc) => {
+//     await _
+//     await wait(doc);
+// }, undefined);
+
+
+// for (const iterator of object) {
+//     await wait(iterator)
+// }
+
+
+// 异步写法
+// [1, 3, 4].forEach(async (doc) => {
+//     await wait(doc);
+// });
