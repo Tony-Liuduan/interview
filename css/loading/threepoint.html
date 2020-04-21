@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>利用box-shadow实现...loading</title>
+    <style>
+        .dotting {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            box-shadow: 4px 0 currentColor, 10px 0 currentColor, 16px 0 currentColor;
+            animation: dot 0.7s step-start alternate infinite;
+        }
+
+        @keyframes dot {
+            25% {
+                box-shadow: none;
+            }
+            50% {
+                box-shadow: 4px 0 currentColor;
+            }
+            75% {
+                box-shadow: 4px 0 currentColor, 10px 0 currentColor;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    订单提交中<span class="dotting"></span>
+</body>
+
+</html>

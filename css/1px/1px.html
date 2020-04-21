@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1px</title>
+    <style lang="">
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            background-image:
+                -webkit-linear-gradient(top, green, green 50%, transparent 50%, transparent 100%),
+                -webkit-linear-gradient(right, green, green 50%, transparent 50%, transparent 100%),
+                -webkit-linear-gradient(bottom, green, green 50%, transparent 50%, transparent 100%),
+                -webkit-linear-gradient(left, green, green 50%, transparent 50%, transparent 100%);
+            background-size: 100% 10px, 10px 100%;
+            background-repeat: no-repeat;
+            background-position: left top, right top, left bottom, left top;
+        }
+
+        p {
+            height: 200px;
+            width: 200px;
+            background-color: greenyellow;
+            background-image: linear-gradient(to top, red, red 50%, transparent 50%, transparent 100%);
+            background-image: -webkit-linear-gradient(bottom, red, red 50%, transparent 50%, transparent 100%);
+            background-size: 100% 20px;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+        }
+
+        .x {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+        }
+
+        .x::before {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            box-sizing: border-box;
+            border: 20px solid red;
+            transform: scale(0.5);
+            transform-origin: 0 0 0;
+        }
+
+        .y {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+        }
+
+        .y::before {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: red;
+            transform: scaleY(0.5);
+            transform-origin: 0 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <p></p>
+
+    <form class="x">四边</form>
+    <br>
+    <form class="y">top</form>
+</body>
+
+</html>
