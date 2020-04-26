@@ -45,6 +45,20 @@ function throttle(fn, delay = 500, immediate) {
 }
 
 
+// settimeout type
+function throttle(fn, delay = 500) {
+    let timer;
+    return function (...args) {
+        if (timer == null) {
+            timer = setTimeout(() => {
+                timer = null;
+            }, delay);
+            return fn.apply(null, args)
+        }
+    }
+}
+
+
 document.getElementById("input2").oninput = throttle(function (e) {
     console.log(e.target.value, "throttle");
 }, 200, true);
