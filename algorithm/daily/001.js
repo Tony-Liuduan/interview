@@ -2,8 +2,10 @@
  * @Author: liuduan
  * @Date: 2020-04-26 17:58:11
  * @LastEditors: liuduan
- * @LastEditTime: 2020-04-26 18:41:45
+ * @LastEditTime: 2020-04-27 08:34:15
  * @Description: 二维数组查找
+ * 
+ * https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/submissions/
  * 
  * 前提：
  * 在一个二维数组中，
@@ -58,3 +60,38 @@ var arr = [
 const has = indexof(arr, 5);
 
 console.log(has);
+
+
+
+
+/**
+ * batter
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var findNumberIn2DArray = function (matrix, target) {
+    let l = matrix.length;
+    if (l < 1) return false;
+    let ll = matrix[0].length;
+    let x = 0;
+    let y = l - 1;
+
+    while (y >= 0 && x < ll) {
+        if (matrix[y][x] > target) {
+            // 继续往上找
+            y--;
+            continue;
+        }
+
+        if (matrix[y][x] < target) {
+            // 继续往右找
+            x++;
+            continue;
+        }
+
+        return true;
+    }
+
+    return false;
+};
