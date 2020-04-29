@@ -2,7 +2,7 @@
  * @Author: liuduan
  * @Date: 2020-04-29 11:37:43
  * @LastEditors: liuduan
- * @LastEditTime: 2020-04-29 12:02:38
+ * @LastEditTime: 2020-04-29 16:08:48
  * @Description: 
  * https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/
  * 输入一个整数，输出该数二进制表示中1的个数，其中负数用补码表示
@@ -27,5 +27,23 @@ var hammingWeight = function (n) {
 // console.log(hammingWeight(00000000000000000000000000001011))
 
 var x = 00000000000000000000000000001011
-console.log(x.toString(2))
+// console.log(x.toString(2))
 // todos：位运算复习 & <<
+
+// 比较是否是1，可以通过二进制位运算 & ， 只有都是1才得1
+// 所以只要用一个标识数，保证标识数每次比较的位置上1，其他位是0就能判断出当前位是否1
+
+function hammingWeight1(num) {
+    let flag = 1;// 二进制：0000000 00000000 00000000 00000001
+    let n = 0;
+    while(flag) {
+        if (flag & num) {
+            n++;
+        }
+        flag = flag << 1;
+    }
+    return n;
+}
+
+var s = hammingWeight1(9);
+console.log(s);

@@ -2,7 +2,7 @@
  * @Author: liuduan
  * @Date: 2020-04-26 17:58:11
  * @LastEditors: liuduan
- * @LastEditTime: 2020-04-27 08:34:15
+ * @LastEditTime: 2020-04-29 16:30:11
  * @Description: 二维数组查找
  * 
  * https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/submissions/
@@ -95,3 +95,47 @@ var findNumberIn2DArray = function (matrix, target) {
 
     return false;
 };
+
+
+/**
+ * 二分法
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var binarySearch = function (matrix, target, start, end) {
+    if (start > end) {
+        return false;
+    }
+    
+    let l = matrix.length;
+    if (start === undefined) {
+        start = 0;
+    }
+    if (end === undefined) {
+        end = l - 1;
+    }
+
+    console.log(start, end)
+
+    let mi = Number.parseInt((start + end) / 2);
+
+    let mv = Array.isArray(matrix[mi]) ? matrix[mi][0] : matrix[mi];
+
+    if (mv === target) {
+        return true;
+    }
+
+    if (mv < target) {
+        let rs = binarySearch(matrix[mi], target, 1)
+        if (!rs) {
+            rs = binarySearch(matrix, target, mi + 1, end)
+        }
+        return rs;
+    }
+
+    binarySearch(matrix, target, start, mi - 1)
+
+};
+console.log('******************')
+console.log(binarySearch(arr, 5));
