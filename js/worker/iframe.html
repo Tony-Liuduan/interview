@@ -11,7 +11,7 @@
     <script>
         window.addEventListener('message', function (event) {
             console.log(event.data);
-            // 想父发送消息，内容高度
+            // 像父发送消息，内容高度
             top.postMessage(document.title)
         }, false);
     </script>
