@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cors-canvas</title>
+    <style>
+        #mycanvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 默认w=300px h=150px -->
+    <!-- canvas不支持赋值百分百，会被认为是px -->
+    <!-- style中设置canvas设置宽高是对canvas整体画布大小的的缩放 -->
+    <canvas id="mycanvas">浏览器不支持Canvas,请升级或改用其它浏览器！</canvas>
+    <script type="text/javascript">
+        const canvas = document.getElementById("mycanvas");
+        const ctx = canvas.getContext('2d');
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(300, 150);
+        // ctx.stroke();
+
+        const img = new Image;
+        img.src = './test.png'; //图片路径
+        //加载成功后的执行函数，之后的代码就写在其中
+        img.onload = function () {
+            const { width, height } = img;
+            canvas.width = width;
+            canvas.height = height;
+
+
+            // 获取像素点，也就是使用getimagedata方法。
+            ctx.drawImage(img, 0, 0);  //将图片画如canvas
+            let data = ctx.getImageData(0, 0, width, height).data;//读取整张图片的像素。
+
+
+            // 创建存储图片像素点的二维数组
+            let coordinates = [];
+            for (let i = 0; i < height; i++) {
+                coordinates[i] = [];
+            }
+
+            let x = 0, y = 0;  //二维数组的行和列， x：行  y：列
+            let i = 0, len = data.length;
+            while (i < len) {
+                let red = data[i++];       //红色色深
+                let green = data[i++]; //绿色色深
+                let blue = data[i++];  //蓝色色深
+                let alpha = data[i++]; //透明度
+
+                if (`${red} ${green} ${blue}` === '211 228 200') {
+                    // 空白区域
+                    coordinates[y][x] = 0;
+                } else {
+                    // 有内容区域
+                    coordinates[y][x] = 1;
+                }
+
+                x++;
+
+                if (x >= width) {
+                    x = 0;
+                    y++;
+                }
+            }
+
+            function getCountAndArea() {
+                let sum = [];
+                let count = 0;
+                for (let i = 0; i < height; i++) {
+                    for (let j = 0; j < width; j++) {
+                        //连续1的个数
+                        if (coordinates[i][j] == 1) {
+                            let area = 0;
+                            area = linkSum(i, j, area);
+                            count++;
+                            sum.push({
+                                y: i,
+                                x: j,
+                                area,
+                            });
+                        }
+                    }
+                }
+                return {
+                    count,
+                    sum,
+                };
+            }
+
+            //计算连续的面积和个数
+            function linkSum(i, j, num) {
+                // 走过的路就置0
+                coordinates[i][j] = 0;
+                num++;
+                //向下
+                if ((i + 1 < height) && coordinates[i + 1][j] == 1) {
+                    num = linkSum(i + 1, j, num);
+                }
+                //向右
+                if ((j + 1 < width) && coordinates[i][j + 1] == 1) {
+                    num = linkSum(i, j + 1, num);
+                }
+                //向上
+                if ((i - 1 >= 0) && coordinates[i - 1][j] == 1) {
+                    num = linkSum(i - 1, j, num);
+                }
+                //向左
+                if ((j - 1 >= 0) && coordinates[i][j - 1] == 1) {
+                    num = linkSum(i, j - 1, num);
+                }
+
+                return num;
+            }
+
+            const { count, sum } = getCountAndArea();
+            console.log('个数： ' + count);
+            for (let i = 0; i < sum.length; i++) {
+                console.log(`第${i + 1}个面积为: ${sum[i].area}px, 起点坐标: ${sum[i].x}, ${sum[i].y}`);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

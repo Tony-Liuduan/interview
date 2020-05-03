@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cors-jsonp</title>
+</head>
+
+<body>
+    <h1>jsonp cors</h1>
+    <script>
+        function jsonp(url, params, cbname) {
+            return new Promise((res, rej) => {
+                const dataString = url.indexOf('?') === -1 ? '?' : '&'
+                const callbackName = cbname || 'jsonpCB_' + Date.now() + '_' + Math.random().toString().slice(2);
+                url += `${dataString}callback=${callbackName}`
+                if (params) {
+                    url += '&' + Object.keys(params).map(k => `${k}=${encodeURIComponent(params[k])}`).join('&')
+                }
+                const s = document.createElement('script');
+                s.src = url;
+
+                window[callbackName] = function (data) {
+                    delete window[callbackName];
+                    document.body.removeChild(s);
+                    res(data);
+                };
+
+                s.addEventListener('error', (e) => {
+                    delete window[callbackName]
+                    document.body.removeChild(jsNode)
+                    reject(e);
+                }, false);
+
+                document.body.appendChild(s);
+
+            });
+        }
+    </script>
+    <script>
+        jsonp('http://localhost:8081/test.js', { a: 1 }, 'fn')
+            .then(data => {
+                alert(data);
+            });
+    </script>
+</body>
+
+</html>
