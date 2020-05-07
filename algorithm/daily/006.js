@@ -2,8 +2,8 @@
  * @Author: liuduan
  * @Date: 2020-05-06 21:34:36
  * @LastEditors: liuduan
- * @LastEditTime: 2020-05-07 10:49:12
- * @Description: 
+ * @LastEditTime: 2020-05-07 11:03:28
+ * @Description: 回溯算法：核心：在for循环中调用递归，给递归一个返回条件，在递归结束后修改回递归前的状态，即回溯
  * 输入一个字符串，打印出该字符串中字符的所有排列。
  * 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
  * https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/
