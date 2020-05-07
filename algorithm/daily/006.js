@@ -2,7 +2,7 @@
  * @Author: liuduan
  * @Date: 2020-05-06 21:34:36
  * @LastEditors: liuduan
- * @LastEditTime: 2020-05-07 10:32:49
+ * @LastEditTime: 2020-05-07 10:49:12
  * @Description: 
  * 输入一个字符串，打印出该字符串中字符的所有排列。
  * 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
@@ -39,9 +39,11 @@ var permutations = function (s) {
     return res;
 };
 
-console.log(permutation('abc'))
 
-/* batter version */
+/**
+* @param {string} s
+* @return {string[]}
+*/
 function permutation(s) {
     let res = [];
     let waitqueue = s.split('');
@@ -66,3 +68,6 @@ function permutation(s) {
 
     return [...new Set(res)].sort();
 }
+
+
+console.log(permutation('abc'))
