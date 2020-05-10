@@ -23,6 +23,7 @@ sudo docker run hello-world
 ### 启动/停止 docker
 ```sh
 systemctl start   docker
+# mac 使用 launchctl 命令代替 systemctl
 systemctl status  docker
 systemctl stop    docker
 systemctl restart docker
@@ -111,6 +112,8 @@ docker exec -it 容器id bash
 # 查看秘钥
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
+
+
 
 
 ## try use Jenkins
