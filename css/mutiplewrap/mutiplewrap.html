@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            position: relative;
+            /*line-height和height要相互配合，显示多少行就省略，就是line-height多少倍数*/
+            line-height: 1.2em;
+            max-height: 3.6em;
+            /*此属性看需求来判断是否设置，因为设置了padding-right，多腾出了点位置，该值一般为padding-right的值的负值*/
+            /*margin-left: -1em;*/
+            /*此值写死成1em就好，因为省略号大概就是占用1em的空间*/
+            padding-right: 1em;
+            text-align: justify;
+            overflow: hidden;
+        }
+
+        .wrap:before {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            content: '...';
+        }
+
+        .wrap:after {
+            position: absolute;
+            right: 0;
+            /*宽高写死1em就好，因为省略号大概就是占用1em的空间，用来遮挡住省略号，也基本上跟wrap的padding-right一致*/
+            width: 1em;
+            /*与wrap的行高实际值保持一致*/
+            height: 1.2em;
+            content: '';
+            /*要跟所在背景颜色一致才能遮挡住省略号后觉得没异样*/
+            background-color: #fff;
+        }
+
+        .wrap-webkit {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-all;
+            -webkit-line-clamp: 2;
+        }
+        .wrap-pre {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>多行</h1>
+    <a href="https://juejin.im/post/5caeef8be51d456e3b70185d#heading-3">原文地址</a>
+    <div class="wrap">思路： 用于挡住省略号的方块也是绝对定位，靠右定为，right:
+        0，但是bottom值就不要设置了，如果不设置的话，该方块会跟着文本内容的实际高度移动，而不是max-height的高度。这样的话，当不需要省略时（即不超过max-height）时，就刚好是bottom:
+        0的情况，就会挡住省略号。当要进行省略时（即超过max-height）就会挡不住省略号了，
+    </div>
+    <br>
+    <a href="https://juejin.im/post/5b8905456fb9a01a105966b4">word-break</a>
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-line-clamp">-webkit-line-clamp</a>
+    <div class="wrap-webkit">思路：  用于挡住省略号的方块也是绝对dafdsfasdfasddfsdfs定位，靠右定为，right:
+        0，但是bottom值就不要设置了，如果不设置的话，该方块会跟着文本内容的实际高度移动，而不是max-height的高度。这样的话，当不需要省略时（即不超过max-height）时，就刚好是bottom:
+        0的情况，就会挡住省略号。当要进行省略时（即超过max-height）就会挡不住省略号了，
+    </div>
+    <h1>单行</h1>
+    <br>
+    <div class="wrap-pre">
+        思路： 用于挡住省略号的方块也是绝对定位，靠右定为，right:
+        0，但是bottom值就不要设置了，如果不设置的话，该方块会跟着文本内容的实际高度移动，而不是max-height的高度。这样的话，当不需要省略时（即不超过max-height）时，就刚好是bottom:
+        0的情况，就会挡住省略号。当要进行省略时（即超过max-height）就会挡不住省略号了，
+    </div>
+</body>
+</html>
