@@ -1,4 +1,5 @@
 # Chrome
+> https://juejin.im/post/5bb08671e51d450e7210d23e
 
 
 ## 引擎
@@ -22,15 +23,22 @@
 1. html parser 构建Dom Tree
 2. css parser 构建CSSOM
 css正常是不会影响domtree构建的，但是css会阻塞js的执行，
-css不会阻塞js的加载，浏览器的预解析功能会提前帮助加载cssjs文件，当解析domtree时遇到内联或外联不带defer async属性的script标签会，会等待前面的css文件解析完成document.styleSheets，再去执行js文件，js是通过V8引擎去解释的，当js引擎参与时，htmlparser会暂停构建domtree，所以css会间接影响domtree的构建
-3. css生成的document.styleSheets和domtree合并生成renderTee，将样式对应到每一个dom节点上
-4. renderTree再计算出布局树layouttree，这时会把display=none的节点去掉
-5. layouttree再根据样式属性计算出分层树layertree
-6. 根据layertree转化为绘制指令对象painting，提交给合成线程，painting数据在共享内存中
-7. 合成器线程首先将图层分层图块tile，然后将每个图块发送到光栅线程
-8. 栅格线程栅格化每一个tile并将它们存储在GPU内存中
-9. GPU将数据处理成位图数据交给显存（GPU是众核心的）
-10. 显存将数据一块一块绘制到显示器上
+css不会阻塞js的加载，浏览器的预解析功能会提前帮助加载cssjs文件，当解析domtree时遇到内联或外联不带defer async属性的script标签会，会等待前面的css文件解析完成document.styleSheets，再去执行js文件，js是通过V8引擎去解释的，当js引擎参与时，htmlparser会暂停构建**domtree**，所以css会间接影响domtree的构建
+3. 主线程解析CSS以添加计算样式，css生成的document.styleSheets和domtree结合将样式对应到每一个dom节点上，这时是有display:none的
+4. 主线程通过计算样式遍历DOM树并生成布局树，从domtree计算出布局树**layouttree**，计算出每个元素的绘制坐标点，**页面的几何形状**，这时会把display=none的节点去掉，只计算需要显示的元素
+5. 主线程遍历布局树以创建层树，layouttree再根据样式属性计算出分层树layertree
+6. 主线程遍历布局树并生成**绘制记录(绘制次序)**，根据layouttree转化为绘制指令对象**painting**，绘画记录是一个绘画过程的注释，像是“背景优先，然后是文本，然后是矩形”。 
+7. 一旦创建了层树并确定了绘制顺序，主线程将该信息提交给**合成器线程**
+8. 合成器线程的作用是将每个图层切成小块**tile**，然后将每个tile发送到光栅线程，此外合成器线程可以对不同的raster光栅化线程进行优先级排序，以便视口（或附近）内的事物可以先被光栅化。 
+9. 光栅线程创建位图并发送到GPU，光栅线程**光栅化**(光栅化：将painting信息转换成屏幕上的像素称为光栅化
+)每个分块tile，并将它们存储在GPU内存中
+10. GPU将数据处理成位图数据交给显存（GPU是众核心的）
+11. 显存将数据一块一块绘制到显示器上
+12. 一旦分块被光栅化，合成器线程会收集平铺信息，称为绘制矩形，以创建一个合成帧
+    - **绘制矩形**：包含诸如分块在内存中的位置以及在考虑页面合成的情况下绘制分块的页面中的位置等信息。
+    - **合成帧**：表示页面的帧的绘制矩形集合。
+13. 合成帧先发送到浏览器进程，然后发送到GPU，这些合成帧被发送到GPU以在屏幕上显示。 如果发生滚动事件，合成器线程会创建另一个合成帧以发送到GPU。 **此处懵逼？？？**
+
 
 
 ## chrome 进程管理
@@ -52,7 +60,7 @@ css不会阻塞js的加载，浏览器的预解析功能会提前帮助加载css
 2. worker线程
     - service worker
 3. composer合成器线程
-4. rester栅格化线程：处理成GPU能用的
+4. rester光栅化线程：处理成GPU能用的
 
 
 ## 合成线程的有点
