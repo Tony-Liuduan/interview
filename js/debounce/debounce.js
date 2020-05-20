@@ -1,3 +1,9 @@
+/**
+ * @fileoverview 
+ * @author liuduan
+ * @Date 2020-04-02 17:12:08
+ * @LastEditTime 2020-05-20 10:54:47
+ */
 /* 防抖 */
 function debounce(fn, delay = 200, immediate) {
     let timer;
