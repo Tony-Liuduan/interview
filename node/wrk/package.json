@@ -1,0 +1,14 @@
+{
+  "name": "bigpipe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "./wrk  -t8 -c200 -d30s --latency http://localhost:9000/string",
+    "test:bf": "./wrk  -t8 -c200 -d30s --latency http://localhost:9000/buffer",
+    "test:baidu": "./wrk -t12 -c100 -d30s --latency http://www.baidu.com "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
