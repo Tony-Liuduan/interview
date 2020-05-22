@@ -37,7 +37,7 @@
  *     - readable
  * 注册方法：
  *     - read
- *     - pipe (保证读写速度一直)（压缩文件）
+ *     - pipe (保证读写速度一致)（压缩文件）
  * 
  * 
  * --------------------------------------
@@ -220,3 +220,12 @@
 // readL.on('close', () => {
 //     console.log('读取完成', num);
 // })
+
+
+// bigpipe
+// const stream = require('stream');
+// const readable = new stream.Readable();
+// readable.push('ddfadfds');
+// readable.push(null);
+// readable.pipe(ctx.res);
+
