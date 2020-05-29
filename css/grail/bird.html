@@ -33,16 +33,23 @@
             margin-left: -100%;
             width: 200px;
             background: red;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
         }
 
         .extra {
             margin-left: -220px;
             width: 220px;
             background: blue;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
         }
 
         .main {
+            background: yellow;
             width: 100%;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
         }
 
         .main-inner {
@@ -56,6 +63,10 @@
         .footer {
             clear: both;
         }
+
+        .body {
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -63,30 +74,32 @@
     <div class="header">
         <h4>header</h4>
     </div>
-    <div class="main">
-        <div class="main-inner">
-            <h4>main</h4>
-            <p>HHHHHHHHHHHHHHHHHHHHHH
-                hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                HHHHHHHHHHHHHHHHHHHHHH
-                hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-            </p>
+    <div class="body">
+        <div class="main">
+            <div class="main-inner">
+                <h4>main</h4>
+                <p>HHHHHHHHHHHHHHHHHHHHHH
+                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                    HHHHHHHHHHHHHHHHHHHHHH
+                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="sub">
-        <h4>sub</h4>
-        <p>oooooooooooooo
-            00000000000000000
-            ooooooooooooooo
-            ooooooooooooooo
-            000000000000000</p>
-    </div>
+        <div class="sub">
+            <h4>sub</h4>
+            <p>oooooooooooooo
+                00000000000000000
+                ooooooooooooooo
+                ooooooooooooooo
+                000000000000000</p>
+        </div>
 
-    <div class="extra">
-        <h4>extra</h4>
-        <p>BBBBBBBBBBBBBB
-            BBBBBBBBBBBBBBBBBB
-            88888888888888888888</p>
+        <div class="extra">
+            <h4>extra</h4>
+            <p>BBBBBBBBBBBBBB
+                BBBBBBBBBBBBBBBBBB
+                88888888888888888888</p>
+        </div>
     </div>
     <div class="footer">
         <h4>footer</h4>
