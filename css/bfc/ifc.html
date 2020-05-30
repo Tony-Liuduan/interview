@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFC</title>
+    <style type="text/css">
+        #container-div {
+            width: 100px;
+            height: 200px;
+            background: cornflowerblue;
+        }
+
+        #container-div span:nth-child(1) {
+            color: orange;
+            background: rebeccapurple;
+        }
+
+        #container-div span:nth-child(2) {
+            color: green;
+            background: goldenrod;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.cnblogs.com/ammyben/p/8280568.html">引用</a>
+    <h3>1. 多个连续的Inline-Level元素是怎样被拆分到多个line boxs中的？</h3>
+    IFC会先将所有的元素一个个依次首尾相接排列到一起，合并成一个完整的流，然后再确定流中不可拆分的部分，最后将这个流拆分布局到多个不定宽度的line
+    boxs。在上述这个由多个元素组成的流中，不可拆分的部分包括没有空格的连续字符串、单个英文或其他字符、可替换的Inline-Level元素。
+
+    <div id="container-div">
+        <span>This isa spantag</span>
+        <span>ItIsSpan1</span><span>ItIsSpan2</span>
+        <span>ItIsSpan3</span>
+    </div>
+
+    <h3>2. line box的宽度和高度由什么决定的？</h3>
+    line box的宽度由包含块和浮动元素决定：当不存在浮动元素时，line box的宽度等于包含块的内容区域的宽度；否则，因为Inline-Level元素会环绕浮动元素布局的特性，line box的宽度会比包含块的内容区域的宽度小。
+
+      line box的高度是由它包含的所有元素的Inline-box决定的，line box的上边界由行中最高的Inline-box上边界确定，line
+    box的下边界由行中最低的Inline-box下边界确定；需要注意不要误以为line
+    box的高度是由行内最高的元素决定；
+
+    <h3>3. line box之间不会存在空隙，也不会发生重叠</h3>
+    <div>
+        <!-- line box之间不会存在空隙，也不会发生重叠 -->
+        <span style="border:1px solid yellow">
+            <span style="background: red">dfas</span>
+            <span>dsfa</span>
+        </span>
+        <span style="border:1px solid yellowgreen;">
+            <span style="background: red">dfas</span>
+            <span style="width: 100px;">dsfa asd fa sdsa fasd</span>
+        </span>
+    </div>
+
+    <div style="vertical-align:middle">
+        <button>1</button>
+        <button>2</button>
+    </div>
+
+
+    <p>
+    <div></div>
+    </p>
+
+</body>
+</html>
