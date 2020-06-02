@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>martix</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            /* 色相旋转 */
+            filter: hue-rotate(100deg);
+            animation: 4s linear 0s infinite alternate hue;
+            /* 混合模式 */
+            mix-blend-mode: hue;
+            resize: both;
+            overflow: scroll;
+            /* transform: matrix(1, 0, 0, 1, 10, 100); */
+        }
+
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0deg);
+            }
+
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class='box'>
+
+    </div>
+</body>
+</html>
