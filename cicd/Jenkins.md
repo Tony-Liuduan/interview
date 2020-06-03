@@ -118,3 +118,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 ## try use Jenkins
 > https://www.jenkins.io/zh/doc/tutorials/build-a-node-js-and-react-app-with-npm/#setup-wizard
+
+
+
+http://callmedadaxin.github.io/2018/07/20/jenkins-github-hook/
