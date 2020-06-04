@@ -121,4 +121,4 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 
 
-http://callmedadaxin.github.io/2018/07/20/jenkins-github-hook/
+https://juejin.im/post/5dca691ff265da4d4b5ff2f5#heading-10
