@@ -104,7 +104,7 @@ function ajax2(options) {
     };
 
 
-    // 使用formData时，必须是POSt请求，content-type自定改为multipart/form-data;
+    // 使用formData时，必须是POST请求，content-type自定改为multipart/form-data;
     var form = document.getElementById('myform');
     var formData = new FormData(form);
     formData.append('username', '张三');
