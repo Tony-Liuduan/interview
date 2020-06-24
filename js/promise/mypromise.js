@@ -205,7 +205,6 @@ MyPromise.all = function (list) {
 }
 
 
-
 // const pp = new MyPromise((res, rej) => {
 //     setTimeout(() => {
 //         res(new MyPromise(re => {

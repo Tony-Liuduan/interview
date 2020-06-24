@@ -1,9 +1,3 @@
-/**
- * @fileoverview 
- * @author liuduan
- * @Date 2020-04-14 12:41:46
- * @LastEditTime 2020-06-12 17:30:47
- */
 const EventEmitter = require('events');
 
 class MyEmitter extends EventEmitter { }
@@ -16,10 +10,18 @@ myEmitter.on('x-event', () => {
 
 myEmitter.emit('x-event');
 
-
+console.log('after emmit');
+console.time()
 setTimeout(() => {
     console.log('timeout');
 }, 0);
+
+require('fs').readFile('./fs.js', () => {
+    console.timeEnd()
+    setTimeout(() => {
+        console.log('fs setTimeout');
+    }, 0);
+})
 
 setImmediate(() => {
     console.log('immediate');
