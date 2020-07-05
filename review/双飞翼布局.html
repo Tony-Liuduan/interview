@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双飞翼布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-width: 750px;
+        }
+
+        .layout {
+            overflow: hidden;
+        }
+
+        .main-conatiner,
+        .left,
+        .right {
+            float: left;
+            overflow: hidden;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+
+        .main-conatiner {
+            width: 100%;
+        }
+
+        .main-conatiner_body {
+            margin: 0 200px;
+            background-color: red;
+            overflow: hidden;
+        }
+
+        .left {
+            width: 200px;
+            margin-left: -100%;
+            background-color: green;
+        }
+
+        .right {
+            width: 200px;
+            margin-left: -200px;
+            background-color: yellow;
+        }
+
+        .footer {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <header>header</header>
+
+    <div class="layout">
+        <div class="main-conatiner">
+            <div class="main-conatiner_body">
+                <h1>中间内容</h1>
+                <p>hhah </p>
+                <p>fdd</p>
+            </div>
+        </div>
+        <div class="left">左侧边栏</div>
+        <div class="right">右边内容</div>
+    </div>
+
+    <footer>footer</footer>
+</body>
+</html>

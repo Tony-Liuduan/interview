@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小程序源码解析</title>
+</head>
+<body>
+    <script src='./wxml.js'></script>
+    <script>
+        var vdomsCreater = $gwx('demo.wxml'); // 这里的参数是原始wxml文件名
+        var vdoms = vdomsCreater({ message: 'Hello World' }); // 参数这里模拟了逻辑层传入数据
+        console.log(vdoms); // 输出的就是webcomponent
+
+        /* 模拟自定义事件 */
+        document.addEventListener("cat", function (e) { console.log(e.detail) });
+        // create and dispatch the event
+        var event = new CustomEvent("cat", {
+            detail: {
+                hazcheeseburger: true
+            }
+        });
+        document.dispatchEvent(event);
+    </script>
+</body>
+</html>

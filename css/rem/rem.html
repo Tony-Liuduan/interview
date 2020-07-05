@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>rem-方案1（阿里，都按物理像素计算）</title>
+    <style lang="">
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <script>
+        (function (baseFontSize) {
+            const _baseFontSize = baseFontSize || 75;
+            const ua = navigator.userAgent;
+            const matches = ua.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+            const isIos = navigator.appVersion.match(/(iphone|ipad|ipod)/gi);
+            const dpr = window.devicePixelRatio || 1;
+            if (!isIos && !(matches && matches[1] > 534)) {
+                // 如果非iOS, 非Android4.3以上, dpr设为1;
+                dpr = 1;
+            }
+            console.log(dpr);
+            const scale = 1 / dpr;
+            let metaEl = document.querySelector('meta[name="viewport"]');
+            if (!metaEl) {
+                metaEl = document.createElement('meta');
+                metaEl.setAttribute('name', 'viewport');
+                window.document.head.appendChild(metaEl);
+            }
+            console.log(document.documentElement.clientWidth / (750 / _baseFontSize) + 'px', scale);
+            metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale);
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / (750 / _baseFontSize) + 'px';
+        })();
+    </script>
+</head>
+
+<body>
+    <p style="font-size:0.5rem">
+        rem计算方式：750设计稿上量的32px / baseFontSize(75)，不需要考虑除以dpr问题，都是按物理像素计算
+    </p>
+    <br>
+    <div
+        style="font-size:0.4266666666666667rem;height:0.4266666666666667rem;line-height:0.4266666666666667rem;background-color:rgb(42, 165, 73)">
+        测试文本，物理像素32px，独立像素16px
+    </div>
+    <div style="font-size:32px;height:32px;line-height:32px;background-color:brown">
+        测试文本，物理像素32px，独立像素16px
+    </div>
+    <div style="font-size:48px;height:48px;line-height:48px;background-color:rgb(54, 42, 165)">
+        测试文本，物理像素48px，独立像素16px
+    </div>
+    <p>弊端：写px需要注意，需要按照独立像素 * dpr 计算得到物理像素</p>
+</body>
+
+</html>

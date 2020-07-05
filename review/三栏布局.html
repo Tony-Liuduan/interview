@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout {
+            display: flex;
+        }
+
+        .main {
+            flex: 1;
+            background-color: #ccc;
+        }
+
+        .sub,
+        .external {
+            flex: 0 1 150px;
+            background-color: red;
+        }
+
+        .sub {
+            order: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="main">main</div>
+        <div class="sub">sub</div>
+        <div class="external">external</div>
+    </div>
+</body>
+</html>

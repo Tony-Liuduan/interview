@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <hgroup>
+        <h1>这是一篇介绍HTML 5语义化标签和更简洁的结构</h1>
+        <h2>HTML 5</h2>
+    </hgroup>
+
+    <nav>
+        <ul>
+            <li>HTML 5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+        </ul>
+    </nav>
+
+    <article>
+        <p>内容</p>
+        <aside>
+            <h1>作者简介</h1>
+            <p>小北，前端一枚</p>
+            aside在article内表示主要内容的附属信息，
+            在article之外则可做侧边栏，没有article与之对应，最好不用。
+            如果是广告，其他日志链接或者其他分类导航也可以用
+        </aside>
+    </article>
+
+
+    <section>
+        <h1>section是啥？</h1>
+        <article>
+            <h2>关于section</h1>
+                <p>section的介绍</p>
+                <section>
+                    <h3>关于其他</h3>
+                    <p>关于其他section的介绍</p>
+                </section>
+        </article>
+        表示文档中的节或者段；
+        article、nav、aside可以理解为特殊的section，所以如果可以用article、nav、aside就不要用section，没实际意义的就用div
+    </section>
+
+
+    <article>
+        <h1>一篇文章</h1>
+        <p>文章内容..</p>
+        <footer>
+            <p><small>版权：html5jscss网所属，作者：小北</small></p>
+        </footer>
+    </article>
+
+
+    <article>
+
+        <h1>前端技术</h1>
+        <p>前端技术有那些</p>
+
+        <section>
+            <h2>CSS</h2>
+            <p>样式..</p>
+        </section>
+
+        <section>
+            <h2>JS</h2>
+            <p>脚本</p>
+        </section>
+
+    </article>
+
+    article, section, nav, aside, footer, header,
+
+    <figure></figure>
+    <figcaption></figcaption>
+    <data></data>
+    <time></time>
+    <output></output>
+    <progress></progress>
+    <meter></meter>
+    <main></main>
+    <p>Do not forget to buy <mark>milk</mark> today.</p>
+</body>
+</html>

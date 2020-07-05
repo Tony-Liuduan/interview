@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="font-size:16px">
+        rem计算方式：750设计稿上量的32px / baseFontSize(75)，不需要考虑除以dpr问题，都是按物理像素计算
+    </p>
+    <br>
+    <div style="font-size:16px;background-color:brown">
+        测试文本，物理像素32px，独立像素16px
+    </div>
+    <div style="font-size:48px;height:48px;line-height:48px;background-color:rgb(54, 42, 165)">
+        测试文本，物理像素48px，独立像素16px
+    </div>
+    <p>弊端：写px需要注意，需要按照独立像素 * dpr 计算得到物理像素</p>
+</body>
+</html>

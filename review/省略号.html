@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .container {
+            padding: 0 40px;
+            overflow: hidden;
+        }
+
+        .main {
+            float: left;
+            width: 100%;
+            background-color: red;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+            word-spacing: 4em;
+        }
+
+        .float {
+            position: relative;
+            float: left;
+            width: 40px;
+            background-color: pink;
+            margin-left: -100%;
+            left: -40px;
+        }
+
+        .right {
+            position: relative;
+            float: left;
+            width: 40px;
+            background-color: pink;
+            margin-left: -40px;
+            right: -40px;
+        }
+
+        .m-ellipsis {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 4;
+        }
+
+        .m-ellipsis-p {
+            text-indent: 2em;
+            position: relative;
+            max-height: 4.5em;
+            line-height: 1.5;
+            padding-right: 1em;
+            text-align: justify;
+            overflow: hidden;
+            font-size: 40px;
+
+        }
+
+        .m-ellipsis-p::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .alignnone {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            石室诗士施氏，嗜狮，誓食十狮。
+            indasdfasdfasdfadsfasdfasdfasdfasdf
+            施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识
+        </div>
+        <div class="float">
+            浮动元素
+        </div>
+        <div class="right">
+            浮动元素
+        </div>
+    </div>
+
+    <div class="m-ellipsis">
+        石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，
+    </div>
+    <br>
+    <div class="m-ellipsis-p">
+        石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，适施氏适市。施氏视是十狮，恃矢势，使是十狮逝世。氏拾是十狮尸，适石室。石室湿，氏使侍拭石室。石室拭，氏始试食是十狮尸。食时，始识是十狮尸，实十石狮尸。试释是事。石室诗士施氏，嗜狮，誓食十狮。施氏时时适市视狮。十时，适十狮适市。是时，
+    </div>
+
+    <div style="line-height: 0;background:blue">
+        <!-- vertical-align起作用的前提是元素为inline水平元素或table-cell元素，包括span, img,input, button, td
+        默认情况下，div, p等元素设置vertical-align无效
+        img 是 display inline -->
+        <img src="https://image.zhangxinxu.com/image/blog/201508/whats-s.png" width="300" height="100"
+            class="alignnone">
+        <!-- <button>1</button>
+        <button>2</button>
+        <input type="text"> -->
+    </div>
+</body>
+</html>
