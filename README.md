@@ -118,3 +118,4 @@ test()();
 > window.eval是定义在顶层，不参数函数内部引用
 
 test
+amend
