@@ -2,7 +2,7 @@
  * @fileoverview 给定一个正整数，返回它在Excel中对应列名称
  * @author liuduan
  * @Date 2020-07-03 12:57:21
- * @LastEditTime 2020-07-10 11:30:55
+ * @LastEditTime 2020-07-10 18:30:51
  * 
  * 1 - A
  * 2 - B
