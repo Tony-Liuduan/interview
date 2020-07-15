@@ -25,7 +25,7 @@
         // ctx.stroke();
 
         const img = new Image;
-        img.src = './test.png'; //图片路径
+        img.src = './test.jpg'; //图片路径
         //加载成功后的执行函数，之后的代码就写在其中
         img.onload = function () {
             const { width, height } = img;
@@ -36,8 +36,7 @@
             // 获取像素点，也就是使用getimagedata方法。
             ctx.drawImage(img, 0, 0);  //将图片画如canvas
             let data = ctx.getImageData(0, 0, width, height).data;//读取整张图片的像素。
-
-
+            
             // 创建存储图片像素点的二维数组
             let coordinates = [];
             for (let i = 0; i < height; i++) {
