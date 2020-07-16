@@ -172,10 +172,13 @@
 
 
         document.querySelector('.ul').addEventListener('click', function (e) {
-            console.log(e.target, 'click');
+            let y = e.target.offsetTop - (dom.clientHeight - e.target.offsetHeight) / 2;
+            if (y >= maxTranslationY) {
+                return;
+            }
             document.querySelector('.ul').style.transitionDuration = '300ms';
-            document.querySelector('.ul').style.transform = `translate3d(0, -50px,0)`;
-        })
+            document.querySelector('.ul').style.transform = `translate3d(0, -${y}px,0)`;
+        });
     </script>
 </body>
 </html>
