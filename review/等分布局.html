@@ -133,7 +133,7 @@
             //滑动起点的坐标
             startX = touch.pageX;
             startY = touch.pageY;
-            console.log('startY', startY);
+            // console.log('startY', startY);
             // console.log("startX:" + startX + "," + "startY:" + startY);
         }
 
@@ -169,6 +169,13 @@
                 document.querySelector('.ul').style.transform = `translate3d(0, 0px,0)`;
             }
         });
+
+
+        document.querySelector('.ul').addEventListener('click', function (e) {
+            console.log(e.target, 'click');
+            document.querySelector('.ul').style.transitionDuration = '300ms';
+            document.querySelector('.ul').style.transform = `translate3d(0, -50px,0)`;
+        })
     </script>
 </body>
 </html>
