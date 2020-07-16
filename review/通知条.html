@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            height: 30px;
+            background-color: yellowgreen;
+            color: white;
+            overflow: hidden;
+        }
+
+        .list {
+            line-height: 30px;
+            transition: transform 1000ms ease-in-out;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .horizon {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            background-color: yellowgreen;
+            color: white;
+            overflow: hidden;
+        }
+
+        .content {
+            display: inline-block;
+            white-space: nowrap;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="list">
+            <p>您好1，系统进行维护。</p>
+            <p>您好2，系统进行维护。</p>
+            <p>您好3，系统进行维护。</p>
+            <p>您好4，系统进行维护。</p>
+            <p>您好1，系统进行维护。</p>
+            <!-- <p>您好2，系统进行维护。</p>
+            <p>您好3，系统进行维护。</p> -->
+        </div>
+    </div>
+
+    <br>
+
+    <div class="horizon">
+        <p class="content">
+            您好1，系统进行维护系统进行维护系统进行维护系统进行维护系统进行维护。
+        </p>
+    </div>
+    <script>
+        const box = document.querySelector('.box');
+        const list = document.querySelector('.list');
+
+        let delay = 2000;
+        let count = 0;
+        let now = new Date();
+
+        function play(_delay) {
+            setTimeout(() => {
+                if (count >= 4) {
+                    _delay = 0;
+                    count = 0;
+                    list.style.transition = 'none';
+                } else {
+                    _delay = delay;
+                    count++;
+                    list.style.transition = 'transform 500ms ease-in-out';
+                }
+                // console.log(new Date() - now, '================================================================');
+                now = new Date();
+                list.style.transform = `translate3d(0, -${count * 30}px, 0)`;
+                play(_delay);
+
+            }, _delay);
+        }
+
+        play(delay);
+    </script>
+
+    <script>
+        const horizonBox = document.querySelector('.horizon');
+        const textContent = document.querySelector('.content');
+
+        const horizonBoxWidth = horizonBox.clientWidth
+        const textWidth = textContent.clientWidth
+        const wx = horizonBoxWidth + textWidth;
+
+        let speed = 0.2;
+
+        function player(w = textWidth) {
+            let timeout = w / speed;
+
+            textContent.style.transition = `transform ${timeout}ms linear`;
+            textContent.style.transform = `translate3d(-${textWidth}px, 0, 0)`;
+
+            setTimeout(() => {
+                textContent.style.transition = `none`;
+                textContent.style.transform = `translate3d(${textWidth}px, 0, 0)`;
+                setTimeout(() => {
+                    player(wx);
+                }, 0);
+            }, timeout + 100);
+        }
+
+        setTimeout(() => {
+            player(textWidth);
+        }, 2000);
+    </script>
+</body>
+</html>
