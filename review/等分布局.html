@@ -47,10 +47,21 @@
             background-clip: content-box;
             padding: 0 4px;
         }
+
+        .scr {
+            height: 200px;
+            overflow: hidden;
+            background-color: greenyellow;
+        }
+
+        /* .ul {
+            transform: translate3d(0, -200px, 0);
+            transition: all .2;
+        } */
     </style>
 </head>
 <body>
-    <div class="box">
+    <!-- <div class="box">
         <div class="item">1</div>
         <div class="item">2</div>
         <div class="item">3</div>
@@ -58,6 +69,106 @@
         <div class="item">5</div>
         <div class="item">6</div>
         <div class="item">7</div>
+    </div> -->
+
+    <div class="scr">
+        <ul class="ul">
+            <li>0------</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>2</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1--------------</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>end------------------------------------------------</li>
+        </ul>
     </div>
+    <script>
+        let dom = document.querySelector('.scr');
+
+        let startY = 0
+        let distance = 0;
+        let lastMove = 0;
+        let maxTranslationY = document.querySelector('.ul').clientHeight - dom.clientHeight;
+
+        const handleStart = (e) => {
+            document.querySelector('.ul').style.transitionDuration = '0ms';
+            var touch = event.targetTouches[0];
+            //滑动起点的坐标
+            startX = touch.pageX;
+            startY = touch.pageY;
+            console.log('startY', startY);
+            // console.log("startX:" + startX + "," + "startY:" + startY);
+        }
+
+        const handleMove = e => {
+            var touch = event.targetTouches[0];
+            //手势滑动时，手势坐标不断变化，取最后一点的坐标为最终的终点坐标
+            endX = touch.pageX;
+            endY = touch.pageY;
+            distance = startY - endY;
+            startY = endY;
+            const currentTransform = window.getComputedStyle(document.querySelector('.ul')).transform || window.getComputedStyle(dom).webkitTransform;
+            let lastY = 0;
+            if (currentTransform !== 'none') {
+                lastY = parseFloat(currentTransform.split(',')[5])
+            }
+            lastMove = lastY;
+            document.querySelector('.ul').style.transform = `translate3d(0,${lastY + distance}px,0)`;
+        }
+
+
+
+        dom.addEventListener('touchstart', handleStart);
+        dom.addEventListener("touchmove", handleMove);
+        dom.addEventListener("touchend", function (event) {
+            startY = 0;
+            if (lastMove + distance <= -maxTranslationY) {
+                // dom.removeEventListener('touchstart', handleStart);
+                // dom.removeEventListener('touchmove', handleMove);
+                document.querySelector('.ul').style.transitionDuration = '300ms';
+                document.querySelector('.ul').style.transform = `translate3d(0,-${maxTranslationY}px,0)`;
+            } else if (lastMove + distance >= 0) {
+                document.querySelector('.ul').style.transitionDuration = '300ms';
+                document.querySelector('.ul').style.transform = `translate3d(0, 0px,0)`;
+            }
+        });
+    </script>
 </body>
 </html>
