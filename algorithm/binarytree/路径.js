@@ -2,7 +2,7 @@
  * @fileoverview 
  * @author liuduan
  * @Date 2020-07-09 11:29:15
- * @LastEditTime 2020-07-10 15:22:54
+ * @LastEditTime 2020-07-17 15:40:38
  */
 var tree = {
     value: 1,
@@ -46,4 +46,64 @@ function dfs(tree) {
     return sum;
 }
 
-dfs(tree);
+// dfs(tree);
+
+
+
+var tree1 = {
+    value: 1,
+    children: [
+        {
+            value: 2,
+            children: [
+                {
+                    value: 3,
+                },
+                {
+                    value: 4,
+                },
+            ]
+        },
+        {
+            value: 5,
+            children: [
+                {
+                    value: 6,
+                },
+                {
+                    value: 7,
+                    children: [
+                        {
+                            value: 8,
+                        },
+                    ]
+                },
+            ]
+        }
+    ]
+}
+
+function getPath(tree, id) {
+    let res;
+
+    function dfs(tree, path) {
+        if (tree) {
+            path += tree.value;
+            if (tree.value === id) {
+                res = path;
+                return;
+            }
+            if (tree.children) {
+                for (let childNode of tree.children) {
+                    dfs(childNode, path);
+                }
+            }
+        }
+    }
+
+    dfs(tree, '');
+    console.log(res);
+    return res;
+}
+
+getPath(tree1, 7)
