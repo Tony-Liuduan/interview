@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-block {
+            width: 400px;
+            height: 300px;
+            background: #ddd;
+            border: 2px red solid;
+            position: relative;
+        }
+
+        .box-block .child {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: orange;
+            position: absolute;
+            /* top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto; */
+        }
+
+        .box-block .child {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%);
+            /* margin-top == 父元素宽度的% */
+            /* margin-top: -12.5%; */
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            border: 2px red solid;
+            line-height: 200px;
+        }
+
+        .box button {
+            background-color: goldenrod;
+            border: 0 none;
+            width: 100px;
+            height: 100px;
+        }
+
+        .box img {
+            background-color: goldenrod;
+            border: 0 none;
+            width: auto;
+            height: 100px;
+            /*  vertical-align 用来指定行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方式 */
+            vertical-align: middle;
+        }
+
+        .table-box {
+            display: table;
+            width: 200px;
+            height: 200px;
+            border: 2px red solid;
+            text-align: center;
+        }
+
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            background-color: aqua;
+            border: 1px green solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box-block">
+        <div class="child">test vertical align</div>
+    </div>
+
+    <div class="box">
+        <button>点我吧</button>
+    </div>
+
+    <div class="box"><img src="./test.jpg" alt=""></div>
+
+    <div class="table-box">
+        <div class="table-cell">
+            table-cell
+        </div>
+        <div class="table-cell">
+            table-cell
+        </div>
+    </div>
+
+
+    <script>
+        function fn() {
+            // 爆栈
+            fn();
+        }
+
+        // fn();
+
+        console.log('1111111111111111');
+
+        function fn1() {
+            console.log('fn1--------------------------------');
+            // 能正常渲染
+            setTimeout(fn1);
+        }
+
+        // fn1();
+
+        console.log('222222222222222');
+
+        function fn2() {
+            console.log('fn2--------------------------------');
+            // 页面无法渲染，一直占用主线程
+            Promise.resolve().then(fn2);
+        }
+
+        // fn2();
+
+        console.log('333333333333333');
+    </script>
+
+    <div>
+        ...script after...
+    </div>
+</body>
+</html>

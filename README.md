@@ -117,5 +117,16 @@ test()();
 > 原因：使用eval时候，无法判断eval内部是否会引用a，则GC不会去清除a，a被放到闭包中，常驻内存
 > window.eval是定义在顶层，不参数函数内部引用
 
-test
-amend
+
+
+6. .的优先级
+```js
+var a = {n:1}
+var b = a;
+a.x = a = {n:2}
+
+// a.x ? undefined
+// b.x ? {n:2}ß
+```
+
+> js中 .的优先级大于= 
