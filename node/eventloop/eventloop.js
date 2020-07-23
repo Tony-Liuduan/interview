@@ -2,7 +2,7 @@
  * @fileoverview 
  * @author liuduan
  * @Date 2020-06-12 17:31:06
- * @LastEditTime 2020-06-12 17:42:42
+ * @LastEditTime 2020-07-22 12:59:34
  * 事件循环的每个阶段
  * ┌───────────────────────────┐
 ┌─>│           timers          │
@@ -33,7 +33,7 @@ setTimeout(() => {
 
 // timeout_vs_immediate.js
 const fs = require('fs');
-fs.readFile('./fs.js', () => {
+fs.readFile('./index.js', () => {
     setTimeout(() => {
         console.log('fs-timeout');
     }, 0);
