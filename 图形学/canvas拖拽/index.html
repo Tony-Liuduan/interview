@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas拖拽-色域</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            position: relative;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .canvas {
+            position: relative;
+            z-index: 2;
+        }
+
+        .v-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas class="canvas" id="js-canvas"></canvas>
+        <canvas class="hidden v-canvas" id="js-v-canvas"></canvas>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

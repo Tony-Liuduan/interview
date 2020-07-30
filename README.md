@@ -130,3 +130,37 @@ a.x = a = {n:2}
 ```
 
 > js中 .的优先级大于= 
+
+
+
+
+
+
+### 鼠标事件e
+
+| 属性             | 参考点                                                       | 兼容性                  |
+| ---------------- | ------------------------------------------------------------ | ----------------------- |
+| clientX, clientY | 相对浏览器可视区域（显示内容区域）左上角，不随页面滚动而改变 | 所有                    |
+| pageX, pageY     | 相对整个html文档左上角，会随着页面滚动而改变                 | 所有，IE除外            |
+| offsetX, offsetY | 事件目标对象左上角，chrome中以内边距左上角为基准点，不包含边框 | 所有，Firefox除外       |
+| layerX, layerY   | 事件目标对象左上角，chrome中以边框左上角为基准点             | Firefox，Chrome，Safari |
+| screenX，screenY | 计算机屏幕                                                   | 所有                    |
+| x, y             | 和clientX, clientY值相同                                     |                         |
+
+offsetHeight
+offsetWeight=content+padding*2+border*2
+offsetLeft
+offsetTop
+
+clientWidth = content + padding*2
+clientHeight
+
+
+### getBoundingClientRect 
+elem.getBoundingClientRect()
+left / x / right / y / width / height
+left / x / right / y 是元素边框左上角相对月屏幕可是区域左上角的距离，是动态
+
+
+### getComputedStyle
+window.getComputedStyle(elem, 'after')
