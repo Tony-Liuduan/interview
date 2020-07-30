@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .typing {
+            /* white-space: nowrap; */
+            /* word-break:break-all使英文字符可以一个一个呈现。 */
+            word-break: break-all;
+            /* 设置等宽字体 */
+            font-family: Consolas, Monaco, monospace;
+            width: 19em;
+            height: 1.25em;
+            overflow: hidden;
+            /* width: 15em; */
+            /* font-size: 14px; */
+            /* 使用border保持和光标距离 */
+            border-right: 2px solid transparent;
+            /* 对于只有0%,100%或from, to两个关键时间帧的动画，step-start和step-end是没有任何需要使用的理由的。 */
+            animation: print 5.5s steps(38, end), cursor .75s step-end infinite;
+        }
+
+        @keyframes print {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 19em;
+            }
+        }
+
+        @keyframes cursor {
+
+            from,
+            to {
+                box-shadow: 1px 0 0 0 transparent;
+            }
+
+            50% {
+                box-shadow: 1px 0 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p class="typing">中英文mixed打字effect，作者：张鑫旭</p>
+
+    <br>
+    <a href="https://www.zhangxinxu.com/wordpress/2018/06/css3-animation-steps-step-start-end/">steps原文地址</a>
+    <a href="https://www.zhangxinxu.com/wordpress/2019/01/css-typewriter-effect/">动画原文地址</a>
+</body>
+</html>

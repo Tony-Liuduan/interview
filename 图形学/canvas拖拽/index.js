@@ -2,11 +2,13 @@
  * @fileoverview 
  * @author liuduan
  * @Date 2020-07-29 14:41:05
- * @LastEditTime 2020-07-30 14:36:03
+ * @LastEditTime 2020-07-30 21:50:17
  */
 
 const canvas = document.getElementById('js-canvas');
-const vcanvas = document.getElementById('js-v-canvas');
+// const vcanvas = document.getElementById('js-v-canvas');
+// 优化，将隐藏canvas放在内存中
+const vcanvas = document.createElement('canvas');
 
 const ctx = canvas.getContext('2d');
 const vctx = vcanvas.getContext('2d');
@@ -38,8 +40,8 @@ const points = [
 ];
 
 // 定义画布大小
-vctx.width = ctx.width = canvas.width = vcanvas.width = 800;
-vctx.height = ctx.height = canvas.height = vcanvas.height = 800;
+vctx.width = ctx.width = canvas.width = vcanvas.width = 400;
+vctx.height = ctx.height = canvas.height = vcanvas.height = 400;
 
 
 initDraw(ctx, vctx, points, '#ccc', false, 6);
