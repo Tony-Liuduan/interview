@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>useCSS3实现动画</title>
+    <style>
+        .shape {
+            height: 200px;
+            width: 200px;
+            background-color: black;
+        }
+        .shape.active {
+            animation: color 4s infinite;
+        }
+
+        @keyframes color {
+            0% {
+                background-color: red;
+            }
+
+            7% {
+                background-color: orange;
+            }
+
+            17% {
+                background-color: yellow;
+            }
+
+            22% {
+                background-color: green;
+            }
+
+            42% {
+                background-color: cyan;
+            }
+
+            82% {
+                background-color: blue;
+            }
+
+            100% {
+                background-color: purple;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="shape" class="shape active"></div>
+    <script>
+        // CSS3动画元素
+        var eleShape = document.getElementById('shape');
+        // Canvas元素
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var width = canvas.width, height = canvas.height;
+        // 绘制方法
+        var draw = function () {
+            context.clearRect(0, 0, width, height);
+            const color = window.getComputedStyle(eleShape).backgroundColor;
+            console.log('draw', color);
+            // 可以确定色值
+            context.fillStyle = color;
+            context.arc(width / 2, height / 2, height / 2, 0, 2 * Math.PI);
+            context.fill();
+            // 持续变化
+            requestAnimationFrame(draw);
+        };
+        draw();
+
+    </script>
+</body>
+</html>

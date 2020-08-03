@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation-fill-mode</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: #1766aa;
+            color: green;
+            margin: auto;
+            margin-left: 0;
+            border-radius: 50%;
+        }
+
+        .active {
+            animation-play-state: running;
+            animation-name: move;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+            animation-delay: 2s;
+            animation-timing-function: ease-in;
+            animation-direction: normal;
+
+            /* none backwards forwards both */
+            animation-fill-mode: none;
+        }
+
+        @keyframes move {
+            from {
+                background-color: orange;
+                color: #000;
+                transform: translateX(0);
+            }
+
+
+            to {
+                background-color: orange;
+                color: #000;
+                transform: translateX(300px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3 id="status">animation-delaying</h3>
+    <div class="box active">吃瓜</div>
+
+    <p>当animation-fill-mode值为backward时，如果有animation-delay延时，则在等待期间的状态就是form时的状态</p>
+
+    <p>当animation-fill-mode值为none时，如果有animation-delay延时，则在等待期间的状态就是动画开始前的状态</p>
+    <p>这里可以观察box的起始颜色区分</p>
+    <script>
+        const box = document.querySelector('.box');
+        const status = document.querySelector('#status');
+
+        box.addEventListener('animationstart', (e) => {
+            console.log('animationstart', e);
+            status.textContent = 'animation-start';
+        });
+        box.addEventListener('animationend', (e) => {
+            console.log('animationend', e);
+            status.textContent = 'animation-end';
+        });
+    </script>
+</body>
+</html>
