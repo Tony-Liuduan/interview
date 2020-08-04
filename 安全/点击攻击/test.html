@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page-a</title>
+    <style>
+        #box {
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>page-A</h1>
+    <br>
+    <br>
+
+    <button id="btn">关注我</button>
+    <div id='box'></div>
+
+    <script>
+        try {
+            console.log(document.referrer) // http://127.0.0.1:8081/
+            console.log(top);
+        } catch (err) {
+            console.log(err)
+        }
+
+        btn.onclick = function () {
+            console.log('点击关注我按钮成功');
+            fetch('/api/test'); // 发送给服务端的是 Referer: http://127.0.0.1:8082/a.html
+        }
+        box.onclick = function () {
+            console.log('handle iframe box click')
+        }
+
+    </script>
+
+
+    <h2>防御</h2>
+    <pre>
+        1. 
+    /* CSP iframe嵌入白名单，在服务端设置 */
+    /* 表示只允许http://xx.xx.com通过iframe内嵌内容*/
+    ctx.set('content-security-policy', 'frame-ancestors http://xx.xx.com');
+    ctx.set('X-Frame-Options', 'DENY'); // ['DENY', 'SAMEORIGIN'];
+
+    X-Frame-Options: DENY
+    X-Frame-Options: SAMEORIGIN
+    X-Frame-Options: allow-from https://example.com/
+
+        2.
+    给iframe设置 sandbox = "allow-same-origin" 则只能加载与主站同域的资源。
+    `&ltiframe src="http://127.0.0.1:8082/a.html" sandbox="allow-same-origin" frameborder="0" id="iframe-a"&gt&lt/iframe&gt`
+    配置后能加载html，不能执行js脚本
+
+    </pre>
+</body>
+</html>
