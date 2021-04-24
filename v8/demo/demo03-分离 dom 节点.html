@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        >
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>内存泄漏 demo03-分离 dom 节点</title>
+    </head>
+    <body>
+        <div id="root">
+            <div class="child">我是子元素</div>
+            <button>移除</button>
+        </div>
+        <script>
+            let btn = document.querySelector('button')
+            let child = document.querySelector('.child') // 在筛选框里输入**detached**，于是就会展示所有脱离了却又未被清除的节点对象
+            let root = document.querySelector('#root')
+
+            btn.addEventListener('click', function () {
+                root.removeChild(child)
+            });
+        </script>
+
+        <!-- <script>
+            let btn = document.querySelector('button')
+
+            btn.addEventListener('click', function () {
+                let child = document.querySelector('.child')
+                let root = document.querySelector('#root')
+                root.removeChild(child)
+            });
+        </script> -->
+    </body>
+</html>

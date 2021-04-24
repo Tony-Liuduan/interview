@@ -1,0 +1,20 @@
+<script>
+    // https://juejin.cn/post/6844904048961781774#heading-8
+    var t = null;
+    var replaceThing = function () {
+        var o = t // o 引用上一次 replaceThing 返回的 t 堆地址
+        var unused = function () {
+            if (o) {
+                console.log("hi")
+            }
+        }
+
+        t = {
+            longStr: new Array(100000).fill('*'),
+            someMethod: function () {
+                console.log("hi")
+            }
+        }
+    }
+    setInterval(replaceThing, 1000);
+</script>

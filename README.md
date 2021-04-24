@@ -1,12 +1,14 @@
 # Interview
-> https://juejin.im/post/5e7d4e8b6fb9a03c6422f112
-> https://github.com/haizlin/fe-interview?utm_source=gold_browser_extension
+
+> <https://juejin.im/post/5e7d4e8b6fb9a03c6422f112>
+> <https://github.com/haizlin/fe-interview?utm_source=gold_browser_extension>
 
 ```sh
 http-server
 ```
 
 ## 9大模块
+
 1. js
 2. http
 3. v8
@@ -17,10 +19,10 @@ http-server
 8. html
 9. 算法
 
-
 ## 经典面试题
 
 1. 问：以下块级作用域代码执行结果是？
+
 ```js
 {
     var a = 1;
@@ -35,13 +37,16 @@ console.log(b)
 ```
 
 2. 问：es6的元编程是啥？
+
 > 对js语言本身进行编程
+
 * Symbol.toPrimitive
 * Symbol.iterator
 * Proxy
 * Reflect
 
 小demo走一个
+
 ```js
 function Tree () {
     return new Proxy({}, handle);
@@ -62,8 +67,8 @@ tree.a.b.c.d = 1;
 console.log(tree.a.b.c.d);
 ```
 
-
 3. 问：说吧，输出啥？
+
 ```js
 let a = 0;
 let fn = async () => {
@@ -84,8 +89,8 @@ foo();
 console.log(++b);
 ```
 
-
 4. 模拟while阻止其他异步不能调用
+
 ```js
 // 1. 模拟while阻止其他异步不能调用
 function fn () {
@@ -101,8 +106,8 @@ fn();
 // 2. 使用 web worker 去执行while里面的任务
 ```
 
-
 5. 请问变量a会被GC回收么，为什么呢?
+
 ```js
 function test(){
     var a = 1;
@@ -117,9 +122,8 @@ test()();
 > 原因：使用eval时候，无法判断eval内部是否会引用a，则GC不会去清除a，a被放到闭包中，常驻内存
 > window.eval是定义在顶层，不参数函数内部引用
 
-
-
 6. .的优先级
+
 ```js
 var a = {n:1}
 var b = a;
@@ -129,12 +133,7 @@ a.x = a = {n:2}
 // b.x ? {n:2}ß
 ```
 
-> js中 .的优先级大于= 
-
-
-
-
-
+> js中 .的优先级大于=
 
 ### 鼠标事件e
 
@@ -155,12 +154,12 @@ offsetTop
 clientWidth = content + padding*2
 clientHeight
 
+### getBoundingClientRect
 
-### getBoundingClientRect 
 elem.getBoundingClientRect()
 left / x / right / y / width / height
 left / x / right / y 是元素边框左上角相对月屏幕可是区域左上角的距离，是动态
 
-
 ### getComputedStyle
+
 window.getComputedStyle(elem, 'after')

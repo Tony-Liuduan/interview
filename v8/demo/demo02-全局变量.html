@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        >
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>内存泄漏 demo02-全局变量</title>
+    </head>
+    <body>
+        <script>
+            function fn1() {
+                // 'use strict';
+                // 此处变量name未被声明
+                name = new Array(99999999)
+            }
+
+            fn1()
+        </script>
+        <script>
+            startBtn.addEventListener("click", function () {
+                var a = new Array(100000).fill(1);
+                var b = new Array(20000).fill(1);
+            });
+
+            var arr = [];
+            startBtn.addEventListener("click", function () {
+                var a = new Array(100000).fill(1);
+                var b = new Array(20000).fill(1);
+                arr.push(b);
+            });
+        </script>
+
+    </body>
+</html>
