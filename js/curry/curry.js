@@ -28,33 +28,33 @@ multi(2, 3)(4);
 
 
 // es5 低配写法
-// function curry(fn) {
-//     let fl = fn.length;
-//     // 记录已经传递参数个数
-//     let count = 0;
-//     let args = [];
-//     return function callback() {
-//         count = count + arguments.length;
-//         args = args.concat([...arguments]);
-//         if (fl > count) {
-//             return callback;
-//         }
-//         if (fl === count) {
-//             fn(...args);
-//         }
-//     }
-// }
+function curry(fn) {
+    let fl = fn.length;
+    // 记录已经传递参数个数
+    let count = 0;
+    let args = [];
+    return function callback() {
+        count = count + arguments.length;
+        args = args.concat([...arguments]);
+        if (fl > count) {
+            return callback;
+        }
+        if (fl === count) {
+            fn(...args);
+        }
+    }
+}
 
 
 // es6 骚写法
-function curry(fn, arr = []) {
-    return (...args) => {
-        return (params => {
-            if (params.length === fn.length) {
-                return fn(...params);
-            } else {
-                return curry(fn, params);
-            }
-        })([...arr, ...args]);
-    }
-}
+// function curry(fn, arr = []) {
+//     return (...args) => {
+//         return (params => {
+//             if (params.length === fn.length) {
+//                 return fn(...params);
+//             } else {
+//                 return curry(fn, params);
+//             }
+//         })([...arr, ...args]);
+//     }
+// }

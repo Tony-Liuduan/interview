@@ -13,9 +13,6 @@ function compose(...funcs) {
             return a(b(...args))
         }
     });
-
-
-
 }
 
 
