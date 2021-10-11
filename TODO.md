@@ -77,3 +77,29 @@
 * 工厂
 
 ## 项目设计
+
+## 项目
+
+* 脚手架
+  * C 端
+    * H5
+      * react
+      * webpack
+      * ssr
+      * node server koa
+      * ts
+      * scss
+      * antd
+    * PC
+      * react
+      * webpack
+      * ssr
+      * node server koa
+      * ts
+      * scss
+      * antd
+  * B 端
+    * react
+    * vite
+    * redux
+    * node server koa
