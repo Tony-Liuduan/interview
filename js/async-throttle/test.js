@@ -2,12 +2,12 @@
  * @fileoverview 
  * @author liuduan
  * @Date 2020-07-08 17:01:20
- * @LastEditTime 2020-07-09 10:02:32
+ * @LastEditTime 2021-10-14 14:49:49
  */
 const fetch = require('node-fetch')
 const cheerio = require('cheerio').load
 // const createThrottle = require('./createThrottle')
-const createThrottle = require('./asyncThrottle')
+// const createThrottle = require('./asyncThrottle')
 
 // code
 const throttle = createThrottle(2)
@@ -21,3 +21,38 @@ Promise.all(urls.map(url => throttle(async () => {
 }, url)))
     .then(titles => console.log('Titles:', titles))
     .catch(err => console.error(err.stack))
+
+
+
+function createThrottle(max) {
+    return function throttle(fetchFn) {
+        const pool = [];
+        let cur = 0;
+        return new Promise((resolve, reject) => {
+            function exex() {
+                if (cur < max) {
+                    cur++;
+                    fetchFn()
+                        .then((res) => {
+                            resolve(res);
+                            cur--;
+                            if (pool.length) {
+                                pool.shift()();
+                            }
+                        })
+                        .catch(e => {
+                            reject(e);
+                            cur--;
+                            if (pool.length) {
+                                pool.shift()();
+                            }
+                        })
+                } else {
+                    pool.push(exex);
+                }
+            }
+            exex();
+        });
+    };
+}
+
