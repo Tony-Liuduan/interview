@@ -1,11 +1,15 @@
 function bubbleSort(nums) {
     const l = nums.length;
-    
     for (let i = 0; i < l - 1; i++) {
+        let flag = false;
         for (let j = 0; j < l - i; j++) {
             if (nums[j] > nums[j + 1]) {
-                swap(nums, j, j + 1);   
+                swap(nums, j, j + 1);
+                flag = true;
             }
+        }
+        if (!flag) {
+            break;
         }
     }
 
