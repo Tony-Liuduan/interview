@@ -161,7 +161,7 @@ console.log(counter); // 4
 
 ## esm vs commonjs
 
-1. 输出值: ems 输出的是值的引用, commonjs 输出的是 module.exports 对象的浅拷贝值
+1. 输出值: ems 输出的是值的引用, commonjs 输出的是 module.exports 对象
 2. 引用值更新: ems 引用值永远是最新的, commonjs 引用值如果是引用类型可保持同步更新, 值类型不可以同步更新, 需要借助 getter 实现
 3. 循环依赖:
    1. 共同点: 重复引入某个相同的模块时，模块只会执行一次
@@ -175,3 +175,31 @@ console.log(counter); // 4
 1. 模块加载方法: 并行加载所有依赖的模块
 2. 模块执行顺序: SeaJS 同步顺序执行, 先执行主代码, 遇到 require, 执行模块的 define 方法, 同步顺序执行; RequireJS 优先执行依赖, 顺序有可能不是按照写依赖顺序执行, 执行完依赖后再执行主代码
 3. 写法: SeaJS 类同 commonjs, 更爽
+
+## 总结
+
+### commonjs
+
+require xxx 对应的 module.exports = xxx 的值
+require { xxx } 对应的 module.exports.xxx 的值
+exports = module.exports
+
+module.export 输出的是值或对象
+值不会同步更新
+对象的属性值会同步更新
+
+若果导出 new class() ，导出的就是单例模式对象
+
+导出对象属性在导出文档和引用文件中都可以修改属性值
+
+
+### esm
+
+export default / export 的是值的引用，若果导出 new class() ，导出的就是单例模式对象
+
+ems 输出的是值的引用
+
+值会同步更新
+对象的属性值会同步更新
+
+导出对象属性在导出文档和引用文件中都可以修改属性值
