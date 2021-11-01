@@ -74,12 +74,13 @@
         - 专注于当前页面加载的资源
         - 高优先级加载资源
         - 不会阻塞浏览器domContentLoadedEventEnd时间DOMContentLoaded
+        - 需要使用 crossorigin 防止二次加载
     * prefetch
         - 专注于下一个页面要去加载的资源
         - 低优先级
         - 浏览器在后台闲置的时候去加载，把资源存在缓存中
         - 当加载完后，使用时会立即执行资源
-        - link prefetch
+        - link prefetch，需要合理使用 as 属性
     
             ```html
             <link rel="prefetch" as="script" href="//c.housingcdn.com/s/Filters/mobile.42a07835.a.js">
@@ -91,10 +92,12 @@
         - **prerender**：后台渲染整个页面，预先做一些请求的操作，关键路径上消除了RTTs并且减少了半秒已上的延迟 ？？？什么意思不懂
     * preconnect 
         - 启动早期连接（包括DNS查找，TCP握手和可选TLS协商）允许用户代理屏蔽建立连接的高延迟成本
+        - 最好和 dns-frefetch 搭配使用
         - https://housing.com/
     
             ```html
-            <link rel="preconnect" href="//c.housingcdn.com">
+            <link rel="preconnect" href="//c.housingcdn.com" crossorigin>
+            <link rel='dns-prefetch' href='//c.housingcdn.com'>
             ```
 6. bigpipe
 
