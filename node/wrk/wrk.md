@@ -1,21 +1,31 @@
 ## 压测工具-wrk
-> 转载：https://www.jianshu.com/p/ac185e01cc30
+
+> 转载：<https://www.jianshu.com/p/ac185e01cc30>
 
 ```sh
-[root@jerrik /]# wrk -t12 -c100 -d30s http://www.baidu.com  
-Running 30s test @ http://www.baidu.com
-  12 threads and 100 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency   211.76ms  304.92ms   1.97s    88.17%
-    Req/Sec    72.93     68.72   797.00     90.97%
-  23725 requests in 30.05s, 347.47MB read
-  Socket errors: connect 0, read 48, write 0, timeout 50
-Requests/sec:    789.57
-Transfer/sec:     11.56MB
-[root@jerrik /]# 
+git clone https://github.com/wg/wrk.git wrk
+cd wrk
+make
+# 将可执行文件移动到 /usr/local/bin 位置
+sudo cp wrk /usr/local/bin
+
+
+wrk -t12 -c100 -d30s http://www.baidu.com  
+
+# Running 30s test @ http://www.baidu.com
+#   12 threads and 100 connections
+#   Thread Stats   Avg      Stdev     Max   +/- Stdev
+#     Latency   211.76ms  304.92ms   1.97s    88.17%
+#     Req/Sec    72.93     68.72   797.00     90.97%
+#   23725 requests in 30.05s, 347.47MB read
+#   Socket errors: connect 0, read 48, write 0, timeout 50
+# Requests/sec:    789.57
+# Transfer/sec:     11.56MB
+# [root@jerrik /]# 
 ```
 
 ### 参数解释
+
 12 threads and 100 connections:
 总共是12个线程,100个连接(不是一个线程对应一个连接)
 
@@ -31,14 +41,13 @@ Socket errors: connect 0, read 48, write 0, timeout 50
 Requests/sec和Transfer/sec
 所有线程平均每秒钟完成了789.57个请求,每秒钟读取11.56MB数据量
 
-
-
 ### MAC下编译WRK
+
 1. 下载编译安装luajit
-wget https://luajit.org/download/LuaJIT-2.0.5.tar.gz
+wget <https://luajit.org/download/LuaJIT-2.0.5.tar.gz>
 tar zxf LuaJIT-2.0.5.tar.gz
 cd LuaJIT-2.0.5
-make MACOSX_DEPLOYMENT_TARGET=10.14 
+make MACOSX_DEPLOYMENT_TARGET=10.14
 sudo make install
 
 2. 编译wrk
