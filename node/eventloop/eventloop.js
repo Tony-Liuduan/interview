@@ -1,8 +1,8 @@
 /**
- * @fileoverview 
+ * @fileoverview https://mp.weixin.qq.com/s?__biz=MzIyNDU2NTc5Mw%3D%3D&mid=2247498291&idx=1&sn=319539c771536021e139a37297c9d853&chksm=e80fb57ddf783c6b2b5c1856c94f5b48c00dea637e1223ad8c5056b9cd1d3e73a42a03a07b59&mpshare=1&scene=1&srcid=1029eZDIE3PPqQKT6entcIXk&sharer_sharetime=1635480020913&sharer_shareid=2554c30e5a0735b388cfa55d6d89ba0e&version=3.1.18.70072&platform=mac#rd
  * @author liuduan
  * @Date 2020-06-12 17:31:06
- * @LastEditTime 2020-07-22 12:59:34
+ * @LastEditTime 2021-11-08 16:09:34
  * 事件循环的每个阶段
  * ┌───────────────────────────┐
 ┌─>│           timers          │
@@ -54,7 +54,27 @@ function someAsyncApiCall(callback) {
 }
 
 someAsyncApiCall(() => {
-    console.log('bar', bar); // 1
+    // console.log('bar', bar); // 1
 });
 
 bar = 1;
+
+
+
+fs.readFile('./index.js', () => {
+    setTimeout(() => console.log('setTimeout'));
+
+    process.nextTick(() => {
+        console.log('nextTick');
+        run();
+        function run() {
+            // console.log('run...');
+            // process.nextTick(() => run());
+            setImmediate(() => run());
+            // setImmediate(() => {
+            //     console.log('setImmediate');
+            // });
+        }
+    });
+    console.log('sync run');
+});
