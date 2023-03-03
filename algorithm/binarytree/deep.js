@@ -159,3 +159,56 @@ function getTreeLevelByDfs (tree) {
 
 getTreeLevelByBfs(treeCase);
 getTreeLevelByDfs(treeCase);
+
+
+/* 前序遍历 */
+function mydep(root) {
+	if (!root) {
+		return []
+	}
+	const stack = [root];
+	const res = [];
+	while(stack.length) {
+		const node = stack.pop()
+		res.push(node.val);
+		if (node.right) {
+			stack.push(node.right)
+		}
+		if (node.left) {
+			stack.push(node.left)
+		}
+	}
+	return res;
+}
+/* 中序遍历 */
+var inorderTraversal = function(root) {
+    const res = [];
+    const stk = [];
+    while (root || stk.length) {
+        while (root) {
+            stk.push(root);
+            root = root.left;
+        }
+        root = stk.pop();
+        res.push(root.val);
+        root = root.right;
+    }
+    return res;
+};
+
+/* 后续遍历 */
+var postorderTraversal = function(root) {
+    let res = [];
+    if(!root){
+        return res;
+    }
+    let stack = [root];
+    let cur;
+    while(stack.length){
+        cur = stack.pop(); //取出中间元素
+        res.unshift(cur.val);
+        cur.left && stack.push(cur.left);
+        cur.right && stack.push(cur.right);
+    }
+    return res;
+};
